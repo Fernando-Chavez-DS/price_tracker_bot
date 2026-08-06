@@ -218,3 +218,5 @@ __marimo__/
 .streamlit/secrets.toml
 
 clave_privada_para_pricetrackerbot_en_google_cloud.json
+
+*.csv
