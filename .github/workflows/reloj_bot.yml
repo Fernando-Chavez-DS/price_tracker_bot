@@ -8,7 +8,7 @@ on:
         - cron: "0 22 * * *" # Ejecuta a las 4:00 PM (Hora Centro)
         - cron: "0 3 * * *" # Ejecuta a las 9:00 PM (Hora Centro)
         - cron: "30 4 * * *" # Ejecuta a las 10:30 PM (Hora Centro)
-    workflow_dispatch: # Mantiene el botón de ejecución manual
+    workflow_dispatch: # Activa el botón de ejecución manual
 
 jobs:
     ejecutar-bot:
@@ -26,7 +26,9 @@ jobs:
               run: pip install -r requirements.txt
 
             - name: 4. Construir la llave de Google en secreto
-              run: echo "${{ secrets.CREDENCIALES_GCP }}" > clave_privada_para_pricetrackerbot_en_google_cloud.json
+              env:
+                  MIS_CREDENCIALES: ${{ secrets.CREDENCIALES_GCP }}
+              run: echo "$MIS_CREDENCIALES" > clave_privada_para_pricetrackerbot_en_google_cloud.json
 
             - name: 5. Ejecutar el robot
               run: python tracker.py
