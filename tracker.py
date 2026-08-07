@@ -53,7 +53,7 @@ opciones.add_argument("--headless=new")
 
 print("Arrancando navegador indetectable...")
 # Inicializamos el navegador con las defensas activadas
-navegador = uc.Chrome(options=opciones)
+navegador = uc.Chrome(options=opciones, version_main=150)
 
 for nombre, enlace in productos.items():
     print(f"Analizando métricas de: {nombre}...")
