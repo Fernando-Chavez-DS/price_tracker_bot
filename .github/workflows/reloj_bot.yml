@@ -1,34 +1,34 @@
 name: Reloj Rastreador de Precios
 
 on:
-    schedule:
-        # Formato Cron: Minuto Hora * * * (en horario UTC)
-        - cron: "0 13 * * *" # Ejecuta a las 7:00 AM (Hora Centro)
-        - cron: "0 18 * * *" # Ejecuta a las 12:00 PM (Hora Centro)
-        - cron: "0 22 * * *" # Ejecuta a las 4:00 PM (Hora Centro)
-        - cron: "0 3 * * *" # Ejecuta a las 9:00 PM (Hora Centro)
-        - cron: "30 4 * * *" # Ejecuta a las 10:30 PM (Hora Centro)
-    workflow_dispatch: # Activa el botón de ejecución manual
+  schedule:
+    # Formato Cron: Minuto Hora * * * (en horario UTC)
+    - cron: "0 13 * * *" # Ejecuta a las 7:00 AM (Hora Centro)
+    - cron: "0 18 * * *" # Ejecuta a las 12:00 PM (Hora Centro)
+    - cron: "0 22 * * *" # Ejecuta a las 4:00 PM (Hora Centro)
+    - cron: "0 3 * * *" # Ejecuta a las 9:00 PM (Hora Centro)
+    - cron: "30 4 * * *" # Ejecuta a las 10:30 PM (Hora Centro)
+  workflow_dispatch: # Activa el botón de ejecución manual
 
 jobs:
-    ejecutar-bot:
-        runs-on: ubuntu-latest
-        steps:
-            - name: 1. Descargar mi codigo de GitHub
-              uses: actions/checkout@v3
+  ejecutar-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Descargar mi codigo de GitHub
+        uses: actions/checkout@v3
 
-            - name: 2. Instalar el cerebro de Python
-              uses: actions/setup-python@v4
-              with:
-                  python-version: "3.10"
+      - name: 2. Instalar el cerebro de Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
-            - name: 3. Instalar las herramientas (Librerias)
-              run: pip install -r requirements.txt
+      - name: 3. Instalar las herramientas (Librerias)
+        run: pip install -r requirements.txt
 
-            - name: 4. Construir la llave de Google en secreto
-              env:
-                  MIS_CREDENCIALES: ${{ secrets.CREDENCIALES_GCP }}
-              run: echo "$MIS_CREDENCIALES" > clave_privada_para_pricetrackerbot_en_google_cloud.json
+      - name: 4. Construir la llave de Google en secreto
+        env:
+          MIS_CREDENCIALES: ${{ secrets.CREDENCIALES_GCP }}
+        run: echo "$MIS_CREDENCIALES" > clave_privada_para_pricetrackerbot_en_google_cloud.json
 
-            - name: 5. Ejecutar el robot
-              run: python tracker.py
+      - name: 5. Ejecutar el robot
+        run: python tracker.py
