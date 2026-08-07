@@ -63,7 +63,7 @@ for nombre, enlace in productos.items():
 
     html_crudo = navegador.page_source
     sopa = BeautifulSoup(html_crudo, 'html.parser')
-
+    print(f"🕵️ Pista de depuración - Título de la ventana: {navegador.title}")
     precio_final = "No encontrado"
     texto_limpio = "Sin promoción"
 
