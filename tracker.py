@@ -60,7 +60,7 @@ for nombre, enlace in productos.items():
     print(f"Analizando métricas de: {nombre}...")
     navegador.get(enlace)
     # Le damos un poco más de tiempo para que cargue como un humano normal
-    time.sleep(15)
+    time.sleep(7)
 
     html_crudo = navegador.page_source
     sopa = BeautifulSoup(html_crudo, 'html.parser')
@@ -94,7 +94,7 @@ for nombre, enlace in productos.items():
     hoja_calculo.append_row([fecha_actual, nombre, precio_final, texto_limpio])
     print(f"✅ Datos guardados en la nube para {nombre}.\n")
 
-    time.sleep(5)
+    time.sleep(3)
 
 navegador.quit()
 
