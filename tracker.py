@@ -48,8 +48,9 @@ productos = {
 # --- NUEVA CONFIGURACIÓN ANTIBLOQUEO (UNDETECTED CHROMEDRIVER) ---
 opciones = uc.ChromeOptions()
 opciones.add_argument("--start-maximized")
+
 # El modo fantasma sigue comentado para que veas la magia en tu pantalla local
-opciones.add_argument("--headless=new")
+# opciones.add_argument("--headless=new")
 
 print("Arrancando navegador indetectable...")
 # Inicializamos el navegador con las defensas activadas
